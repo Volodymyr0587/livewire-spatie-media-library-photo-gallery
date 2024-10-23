@@ -36,7 +36,7 @@ class PhotoGallery extends Component
             });
         }
 
-        $photos = $query->latest()->paginate(12);
+        $photos = $query->latest()->paginate(6);
         $categories = Category::all();
 
         return view('livewire.photo-gallery', [
