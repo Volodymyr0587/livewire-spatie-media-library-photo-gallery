@@ -25,6 +25,11 @@ class PhotoGallery extends Component
         session()->flash('message', 'Photo deleted successfully.');
     }
 
+    public function filterByCategory($categoryId)
+    {
+        $this->selectedCategory = $categoryId;
+    }
+
     public function render()
     {
         $query = Photo::where('user_id', auth()->id())

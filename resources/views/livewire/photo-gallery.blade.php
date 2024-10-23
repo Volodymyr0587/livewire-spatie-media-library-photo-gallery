@@ -18,7 +18,7 @@
                     <h3 class="text-lg font-semibold">{{ $photo->title }}</h3>
                     <div class="mt-2">
                         @foreach($photo->categories as $category)
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                            <span wire:click="filterByCategory({{ $category->id }})" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer hover:bg-gray-300">
                                 {{ $category->name }}
                             </span>
                         @endforeach
