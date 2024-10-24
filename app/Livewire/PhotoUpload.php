@@ -28,7 +28,7 @@ class PhotoUpload extends Component
         $this->validate([
             'photo' => 'required|image|max:2048',
             'title' => 'required|string|max:255',
-            'selectedCategories' => 'required|array|min:1',
+            'selectedCategories' => 'array',
             'selectedCategories.*' => 'exists:categories,id',
             'description' => 'nullable|string',
         ]);

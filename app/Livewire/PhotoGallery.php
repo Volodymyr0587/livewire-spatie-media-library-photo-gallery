@@ -40,7 +40,7 @@ class PhotoGallery extends Component
         $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
-            'selectedCategories' => 'required|array|min:1',
+            'selectedCategories' => 'array',
             'selectedCategories.*' => 'exists:categories,id',
         ]);
 
