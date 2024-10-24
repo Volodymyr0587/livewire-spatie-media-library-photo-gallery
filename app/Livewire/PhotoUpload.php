@@ -45,7 +45,7 @@ class PhotoUpload extends Component
               ->toMediaCollection('photos');
 
         session()->flash('message', 'Photo uploaded successfully.');
-        return $this->redirect('/photos');
+        $this->redirectRoute('photos.index', navigate: true);
     }
     public function render()
     {
