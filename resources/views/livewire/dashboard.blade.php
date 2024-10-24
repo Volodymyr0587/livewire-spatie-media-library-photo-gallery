@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <a href="{{ route('photos.index') }}" class="text-blue-500 hover:text-blue-700">
+                        <a href="{{ route('photos.index') }}" wire:navigate class="text-blue-500 hover:text-blue-700">
                             View All Photos →
                         </a>
                     </div>

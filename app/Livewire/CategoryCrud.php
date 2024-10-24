@@ -14,7 +14,7 @@ class CategoryCrud extends Component
     public $isEditing = false;
 
     protected $rules = [
-        'name' => 'required|string|max:255',
+        'name' => 'required|string|max:255|unique:categories,name',
     ];
 
     public function mount()
