@@ -12,6 +12,48 @@ class PhotoGallery extends Component
     use WithPagination;
 
     public $selectedCategory = null;
+    public $editMode = false;
+    public $photoId;
+    public $title;
+    public $selectedCategories = [];
+    public $categories;
+
+    public function mount()
+    {
+        $this->categories = auth()->user()->categories()->get();
+    }
+
+    public function edit($photoId)
+    {
+        $this->editMode = true;
+        $photo = Photo::findOrFail($photoId);
+
+        $this->photoId = $photo->id;
+        $this->title = $photo->title;
+        $this->selectedCategories = $photo->categories->pluck('id')->toArray();
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'title' => 'required|string|max:255',
+            'selectedCategories' => 'required|array|min:1',
+            'selectedCategories.*' => 'exists:categories,id',
+        ]);
+
+        $photo = Photo::findOrFail($this->photoId);
+
+        $photo->update([
+            'title' => $this->title,
+        ]);
+
+        $photo->categories()->sync($this->selectedCategories);
+
+        session()->flash('message', 'Photo updated successfully.');
+
+        $this->editMode = false;
+        $this->reset(['title', 'selectedCategories']);
+    }
 
     public function delete($photoId)
     {

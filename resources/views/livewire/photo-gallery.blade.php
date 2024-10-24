@@ -1,4 +1,37 @@
 <div class="max-w-7xl mx-auto p-4">
+    @if ($editMode)
+        <div class="max-w-2xl mx-auto mb-4">
+            <form wire:submit.prevent="update" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Title</label>
+                    <input type="text" wire:model="title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    @error('title') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Categories</label>
+                    <div class="mt-2 space-y-2">
+                        @foreach($categories as $category)
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" wire:model="selectedCategories" value="{{ $category->id }}"
+                                       class="rounded border-gray-300 text-blue-600 shadow-sm">
+                                <span class="ml-2">{{ $category->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                    @error('selectedCategories') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded">
+                    Update Photo
+                </button>
+
+                <button type="button" wire:click="$set('editMode', false)" class="bg-gray-500 hover:bg-gray-700 font-bold py-2 px-4 rounded">
+                    Cancel
+                </button>
+            </form>
+        </div>
+    @else
     <div class="mb-4">
         <select wire:model.live="selectedCategory" class="rounded-md border-gray-300 shadow-sm">
             <option value="">All Categories</option>
@@ -26,6 +59,7 @@
                     @if($photo->description)
                         <p class="text-sm text-gray-500 mt-2">{{ $photo->description }}</p>
                     @endif
+                    <button wire:click="edit({{ $photo->id }})" class="text-blue-500 hover:text-blue-700">Edit</button>
                     <button wire:click="delete({{ $photo->id }})" class="mt-2 text-red-600 hover:text-red-800" wire:confirm='Are you sure you want to delete this photo?'>
                         Delete
                     </button>
@@ -37,5 +71,6 @@
     <div class="mt-4">
         {{ $photos->links() }}
     </div>
+    @endif
 </div>
 
