@@ -12,7 +12,7 @@
                 <div class="mb-8">
                     <div class="bg-blue-100 p-4 rounded-lg">
                         <p class="text-lg">You have {{ $totalPhotos }} photos in your collection</p>
-                        <a href="{{ route('photos.upload') }}" wire:navigate class="inline-block mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <a href="{{ route('photos.upload') }}" wire:navigate class="inline-block mt-2 bg-blue-500 text-white hover:bg-blue-700 font-bold py-2 px-4 rounded">
                             Upload New Photo
                         </a>
                     </div>
