@@ -28,11 +28,11 @@
                     @error('selectedCategories') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Update Photo
                 </button>
 
-                <button type="button" wire:click="$set('editMode', false)" class="bg-gray-500 hover:bg-gray-700 font-bold py-2 px-4 rounded">
+                <button type="button" wire:click="$set('editMode', false)" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                     Cancel
                 </button>
             </form>

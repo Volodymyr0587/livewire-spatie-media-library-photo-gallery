@@ -28,7 +28,7 @@
                     <button wire:click="editCategory({{ $category->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded-md mr-2">
                         Edit
                     </button>
-                    <button wire:click="deleteCategory({{ $category->id }})" class="bg-red-500 text-white px-2 py-1 rounded-md">
+                    <button wire:click="deleteCategory({{ $category->id }})" wire:confirm='Are you sure you want to delete this category?' class="bg-red-500 text-white px-2 py-1 rounded-md">
                         Delete
                     </button>
                 </div>
