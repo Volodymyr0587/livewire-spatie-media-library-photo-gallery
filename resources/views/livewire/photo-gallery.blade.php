@@ -82,10 +82,14 @@
                                 @if($photo->description)
                                     <p class="text-sm text-gray-500 mt-2">{{ $photo->description }}</p>
                                 @endif
-                                <button wire:click="edit({{ $photo->id }})" class="text-blue-500 hover:text-blue-700">Edit</button>
-                                <button wire:click="delete({{ $photo->id }})" class="mt-2 text-red-600 hover:text-red-800" wire:confirm='Are you sure you want to delete this photo?'>
-                                    Delete
-                                </button>
+                                <div class="mt-2">
+                                    <button wire:click="edit({{ $photo->id }})" class="bg-blue-500 text-white hover:bg-blue-700 font-bold py-2 px-4 rounded">
+                                        Edit
+                                    </button>
+                                    <button wire:click="delete({{ $photo->id }})" class="bg-red-500 text-white hover:bg-red-700 font-bold py-2 px-4 rounded" wire:confirm='Are you sure you want to delete this photo?'>
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     @endforeach
