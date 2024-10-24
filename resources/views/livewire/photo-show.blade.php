@@ -14,5 +14,10 @@
         @if($photo->description)
             <p class="text-sm text-gray-500 mt-2 text-center">{{ $photo->description }}</p>
         @endif
+        <div>
+            <button type="button" wire:click="download" class="bg-blue-500 text-white hover:bg-blue-700 font-bold py-2 px-4 rounded">
+                Download
+            </button>
+        </div>
     </div>
 </div>
