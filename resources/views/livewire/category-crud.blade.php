@@ -28,6 +28,19 @@
 
                 <h2 class="text-xl font-semibold my-4">My Categories</h2>
 
+                <button wire:click='sortByNameAsc' class="bg-green-500 text-white hover:bg-green-700 font-bold px-2 py-1 rounded-md">
+                    A-Z &darr;
+                </button>
+                <button wire:click='sortByNameDesc' class="bg-green-500 text-white hover:bg-green-700 font-bold px-2 py-1 rounded-md">
+                    Z-A &darr;
+                </button>
+                <button wire:click='sortByDateAsc' class="bg-green-500 text-white hover:bg-green-700 font-bold px-2 py-1 rounded-md">
+                    Date &darr;
+                </button>
+                <button wire:click='sortByDateDesc' class="bg-green-500 text-white hover:bg-green-700 font-bold px-2 py-1 rounded-md">
+                    Date &uarr;
+                </button>
+
                 <ul>
                     @foreach($categories as $category)
                     <li class="flex justify-between items-center my-2">

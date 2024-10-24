@@ -75,6 +75,26 @@ class CategoryCrud extends Component
         session()->flash('message', 'Category deleted successfully.');
     }
 
+    public function sortByNameAsc()
+    {
+        $this->categories = auth()->user()->categories->sortBy('name');
+    }
+
+    public function sortByNameDesc()
+    {
+        $this->categories = auth()->user()->categories->sortByDesc('name');
+    }
+
+    public function sortByDateAsc()
+    {
+        $this->categories = auth()->user()->categories->sortBy('created_at');
+    }
+
+    public function sortByDateDesc()
+    {
+        $this->categories = auth()->user()->categories->sortByDesc('created_at');
+    }
+
 
     public function render()
     {
