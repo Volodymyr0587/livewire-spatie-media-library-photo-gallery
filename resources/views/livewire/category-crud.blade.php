@@ -45,7 +45,10 @@
                 </ul>
 
                 @if (session()->has('message'))
-                    <div class="mt-4 text-green-600">
+                    <div x-data="{ show: true }"
+                         x-init="setTimeout(() => show = false, 5000)"
+                         x-show="show"
+                         class="mb-4 text-green-600 font-bold text-xl">
                         {{ session('message') }}
                     </div>
                 @endif
