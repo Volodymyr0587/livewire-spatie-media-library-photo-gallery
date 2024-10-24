@@ -15,6 +15,7 @@ class PhotoGallery extends Component
     public $editMode = false;
     public $photoId;
     public $title;
+    public $description;
     public $selectedCategories = [];
     public $categories;
 
@@ -30,6 +31,7 @@ class PhotoGallery extends Component
 
         $this->photoId = $photo->id;
         $this->title = $photo->title;
+        $this->description = $photo->description;
         $this->selectedCategories = $photo->categories->pluck('id')->toArray();
     }
 
@@ -37,6 +39,7 @@ class PhotoGallery extends Component
     {
         $this->validate([
             'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000',
             'selectedCategories' => 'required|array|min:1',
             'selectedCategories.*' => 'exists:categories,id',
         ]);
@@ -45,6 +48,7 @@ class PhotoGallery extends Component
 
         $photo->update([
             'title' => $this->title,
+            'description' => $this->description,
         ]);
 
         $photo->categories()->sync($this->selectedCategories);
@@ -52,7 +56,7 @@ class PhotoGallery extends Component
         session()->flash('message', 'Photo updated successfully.');
 
         $this->editMode = false;
-        $this->reset(['title', 'selectedCategories']);
+        $this->reset(['title', 'description', 'selectedCategories']);
     }
 
     public function delete($photoId)

@@ -9,6 +9,12 @@
                 </div>
 
                 <div>
+                    <label class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea wire:model="description" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" rows="3">{{ $description }}</textarea>
+                    @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
                     <label class="block text-sm font-medium text-gray-700">Categories</label>
                     <div class="mt-2 space-y-2">
                         @foreach($categories as $category)
