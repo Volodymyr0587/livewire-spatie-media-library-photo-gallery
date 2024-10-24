@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\CategoryCrud;
 use App\Livewire\Dashboard;
 use App\Livewire\PhotoShow;
 use App\Livewire\PhotoUpload;
@@ -16,12 +17,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
+    // Categories
+    Route::get('/categories', CategoryCrud::class)->name('categories');
+
     // Photos
     Route::prefix('photos')->group(function () {
         Route::get('/', PhotoGallery::class)->name('photos.index');
         Route::get('/upload', PhotoUpload::class)->name('photos.upload');
         Route::get('/{photoId}', PhotoShow::class)->name('photos.show');
     });
+
 });
 
 Route::view('profile', 'profile')
