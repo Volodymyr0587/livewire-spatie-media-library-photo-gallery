@@ -30,20 +30,21 @@
 
                 <ul>
                     @foreach($categories as $category)
-                        <li class="mb-2 flex justify-between">
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                {{ $category->name }}
-                            </span>
-                            <div>
-                                <button wire:click="editCategory({{ $category->id }})" class="bg-yellow-500 text-white hover:bg-yellow-700 font-bold px-2 py-1 rounded-md">
-                                    Edit
-                                </button>
-                                <button wire:click="deleteCategory({{ $category->id }})" wire:confirm='Are you sure you want to delete this category?' class="bg-red-500 text-white hover:bg-red-700 font-bold px-2 py-1 rounded-md">
-                                    Delete
-                                </button>
-                            </div>
-                        </li>
-                        <hr class="h-px my-2 bg-gray-300 border-0 ">
+                    <li class="flex justify-between items-center my-2">
+                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+                            {{ $category->name }}
+                        </span>
+                        <div>
+                            <button wire:click="editCategory({{ $category->id }})" class="bg-yellow-500 text-white hover:bg-yellow-700 font-bold px-2 py-1 rounded-md">
+                                Edit
+                            </button>
+                            <button wire:click="deleteCategory({{ $category->id }})" wire:confirm='Are you sure you want to delete this category?' class="bg-red-500 text-white hover:bg-red-700 font-bold px-2 py-1 rounded-md">
+                                Delete
+                            </button>
+                        </div>
+                    </li>
+                    <hr class="h-px bg-gray-300 border-0 ">
+
                     @endforeach
                 </ul>
 
