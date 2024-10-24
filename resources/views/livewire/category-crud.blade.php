@@ -1,45 +1,56 @@
-<div class="max-w-2xl mx-auto p-4">
-    <h2 class="text-xl font-semibold mb-4">{{ $isEditing ? 'Edit Category' : 'Add Category' }}</h2>
+<div class="py-12">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Categories') }}
+        </h2>
+    </x-slot>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 text-gray-900">
+                <h2 class="text-xl font-semibold mb-4">{{ $isEditing ? 'Edit Category' : 'Add Category' }}</h2>
 
-    <form wire:submit.prevent="{{ $isEditing ? 'updateCategory' : 'createCategory' }}">
-        <div class="mb-4">
-            <input type="text" wire:model="name" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Category name">
-            @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
-        </div>
+                <form wire:submit.prevent="{{ $isEditing ? 'updateCategory' : 'createCategory' }}">
+                    <div class="mb-4">
+                        <input type="text" wire:model="name" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Category name">
+                        @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
 
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">
-            {{ $isEditing ? 'Update Category' : 'Add Category' }}
-        </button>
-
-        @if($isEditing)
-            <button type="button" wire:click="resetInputFields" class="bg-gray-500 text-white px-4 py-2 rounded-md ml-2">
-                Cancel
-            </button>
-        @endif
-    </form>
-
-    <h2 class="text-xl font-semibold my-4">Your Categories</h2>
-
-    <ul>
-        @foreach($categories as $category)
-            <li class="mb-2 flex justify-between">
-                <span>{{ $category->name }}</span>
-                <div>
-                    <button wire:click="editCategory({{ $category->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded-md mr-2">
-                        Edit
+                    <button type="submit" class="bg-blue-500 text-white hover:bg-blue-700 font-bold py-2 px-4 rounded">
+                        {{ $isEditing ? 'Update Category' : 'Add Category' }}
                     </button>
-                    <button wire:click="deleteCategory({{ $category->id }})" wire:confirm='Are you sure you want to delete this category?' class="bg-red-500 text-white px-2 py-1 rounded-md">
-                        Delete
-                    </button>
-                </div>
-            </li>
-        @endforeach
-    </ul>
 
-    @if (session()->has('message'))
-        <div class="mt-4 text-green-600">
-            {{ session('message') }}
+                    @if($isEditing)
+                        <button type="button" wire:click="resetInputFields" class="bg-gray-500 text-white px-4 py-2 rounded-md ml-2">
+                            Cancel
+                        </button>
+                    @endif
+                </form>
+
+                <h2 class="text-xl font-semibold my-4">My Categories</h2>
+
+                <ul>
+                    @foreach($categories as $category)
+                        <li class="mb-2 flex justify-between">
+                            <span>{{ $category->name }}</span>
+                            <div>
+                                <button wire:click="editCategory({{ $category->id }})" class="bg-yellow-500 text-white hover:bg-yellow-700 font-bold px-2 py-1 rounded-md">
+                                    Edit
+                                </button>
+                                <button wire:click="deleteCategory({{ $category->id }})" wire:confirm='Are you sure you want to delete this category?' class="bg-red-500 text-white hover:bg-red-700 font-bold px-2 py-1 rounded-md">
+                                    Delete
+                                </button>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+
+                @if (session()->has('message'))
+                    <div class="mt-4 text-green-600">
+                        {{ session('message') }}
+                    </div>
+                @endif
+            </div>
         </div>
-    @endif
+    </div>
 </div>
 
