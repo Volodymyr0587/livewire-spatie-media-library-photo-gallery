@@ -7,6 +7,14 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
+                @if (session()->has('message'))
+                    <div x-data="{ show: true }"
+                         x-init="setTimeout(() => show = false, 5000)"
+                         x-show="show"
+                         class="mb-4 text-green-600 font-bold text-xl">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <h2 class="text-xl font-semibold mb-4">{{ $isEditing ? 'Edit Category' : 'Add Category' }}</h2>
 
                 <form wire:submit.prevent="{{ $isEditing ? 'updateCategory' : 'createCategory' }}">
@@ -60,15 +68,6 @@
 
                     @endforeach
                 </ul>
-
-                @if (session()->has('message'))
-                    <div x-data="{ show: true }"
-                         x-init="setTimeout(() => show = false, 5000)"
-                         x-show="show"
-                         class="mb-4 text-green-600 font-bold text-xl">
-                        {{ session('message') }}
-                    </div>
-                @endif
             </div>
         </div>
     </div>
