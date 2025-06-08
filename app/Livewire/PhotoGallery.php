@@ -78,7 +78,7 @@ class PhotoGallery extends Component
 
     public function render()
     {
-        $query = Photo::where('user_id', auth()->id())
+        $query = auth()->user()->photos()
             ->with(['categories', 'media']);
 
         if ($this->selectedCategory) {
