@@ -20,7 +20,7 @@ class PhotoUpload extends Component
 
     public function mount()
     {
-        $this->categories = Category::all();
+        $this->categories = auth()->user()->categories;
     }
 
     public function save()
@@ -49,8 +49,6 @@ class PhotoUpload extends Component
     }
     public function render()
     {
-        return view('livewire.photo-upload', [
-            'categories' => Category::all(),
-        ])->layout('layouts.app');
+        return view('livewire.photo-upload')->layout('layouts.app');
     }
 }
